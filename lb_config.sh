@@ -1,23 +1,31 @@
 #!/bin/bash
 
-## USER-DEFINED VARIABLES
+### USER-DEFINED VARIABLES ###
+
 # docker image containing the service to be load-balanced
-INSTANCE_IMG=httpd
+INSTANCE_IMG=emeirell/apache:php7
+
 # number of service instances desired
 NUM_INSTANCES=3
+
 # port running on instance
 INSTANCE_PORT=80
+
 # port to be exposed on load-balancer
 LB_PORT=80
-# container names
+
+# container prefix name
 INSTANCE_CTR_PREFIX=web
+
+# load balancer name
 LB_CTR_NAME=lb
+
 # name of routable (external) network
 # this needs to be defined on your VCH using the '--container-network' option
 # use 'docker network ls' to list available external networks
 EXTERNAL_NET=routable
 
-## NO NEED TO MODIFY BEYOND THIS POINT
+### NO NEED TO MODIFY BEYOND THIS POINT ###
 # initialize haproxy.cfg with defaults
 echo -e global'\n'\
 '\t'maxconn\ 256'\n'\
